@@ -24,5 +24,7 @@ pnpm-debug.log*
 .idea/
 
 # Markdown files
-*.md
+database-schema.md
+GITHUB_SETUP.md
+readme.md
 
