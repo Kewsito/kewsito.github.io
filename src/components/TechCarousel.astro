@@ -1,0 +1,47 @@
+---
+
+// Tecnologías de respaldo si no se pueden cargar desde Supabase
+
+interface props{
+  tecnologias: { nombre: string; color: string; svg: string; }[];
+}
+
+const {tecnologias: propTecnologias} = Astro.props;
+---
+
+<section id="tecnologias" class="py-16" style="background-color: var(--bg-color);">
+  <div class="container mx-auto px-4">
+    <h2 class="section-title gradient-text">Tecnologías</h2>
+    <p class="mb-10 text-lg" style="color: var(--text-muted);">Estas son algunas de las tecnologías con las que trabajo</p>
+    
+    <div class="tech-carousel-container overflow-hidden relative w-full py-8">
+      <div class="tech-carousel flex animate-scroll">
+        {propTecnologias.map((tech: { nombre: string, color: string, svg: string }) => (
+          <div class="flex flex-col items-center group mx-8">
+            <div class="w-24 h-24 rounded-full flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:scale-105 transition-all duration-300" style="background-color: var(--card-bg); box-shadow: 0 4px 6px var(--shadow-color);">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class={`w-12 h-12 ${tech.color}`} fill="currentColor">
+                <path d={tech.svg} />
+              </svg>
+            </div>
+            <span class="font-medium group-hover:text-purple-600 transition-colors">{tech.nombre}</span>
+          </div>
+        ))}
+        
+
+  </div>
+</div>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-160px * 6)); /* Ancho de cada elemento (incluido margen) * número de elementos originales */
+    }
+  }
+  
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+</style>
