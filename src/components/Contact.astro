@@ -1,57 +1,131 @@
 ---
 // Contact.astro
-interface props{
+interface props {
   nombre: string;
   tecnologiasUsadas: string[];
   descripcion: string;
   imagen: string;
 }
 
-const {nombre = "Contacto", tecnologiasUsadas = [], descripcion = "¿Tienes un proyecto en mente? ¡Hablemos!", imagen = ""} = Astro.props;
+const {
+  nombre = "Contacto",
+  tecnologiasUsadas = [],
+  descripcion = "¿Tienes un proyecto en mente? ¡Hablemos!",
+  imagen = "",
+} = Astro.props;
 ---
 
 <section id="contacto" class="py-16" style="background-color: var(--bg-color);">
   <div class="container mx-auto px-4">
     <h2 class="section-title gradient-text">{nombre}</h2>
     <p class="mb-10 text-lg" style="color: var(--text-muted);">{descripcion}</p>
-    
-    <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden" style="background-color: var(--card-bg); box-shadow: 0 4px 6px var(--shadow-color);">
+
+    <div
+      class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden"
+      style="background-color: var(--card-bg); box-shadow: 0 4px 6px var(--shadow-color);"
+    >
       <div class="p-8">
         <form id="contact-form" class="space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label for="name" class="block mb-2 text-sm font-medium" style="color: var(--text-color);">Nombre</label>
-              <input type="text" id="name" name="name" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all" style="border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color);" placeholder="Tu nombre">
+              <label
+                for="name"
+                class="block mb-2 text-sm font-medium"
+                style="color: var(--text-color);">Nombre</label
+              >
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                style="border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color);"
+                placeholder="Tu nombre"
+              />
             </div>
             <div>
-              <label for="email" class="block mb-2 text-sm font-medium" style="color: var(--text-color);">Email</label>
-              <input type="email" id="email" name="email" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all" style="border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color);" placeholder="tu@email.com">
+              <label
+                for="email"
+                class="block mb-2 text-sm font-medium"
+                style="color: var(--text-color);">Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                style="border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color);"
+                placeholder="tu@email.com"
+              />
             </div>
           </div>
-          
+
           <div>
-            <label for="subject" class="block mb-2 text-sm font-medium" style="color: var(--text-color);">Asunto</label>
-            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all" style="border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color);" placeholder="Asunto del mensaje">
+            <label
+              for="subject"
+              class="block mb-2 text-sm font-medium"
+              style="color: var(--text-color);">Asunto</label
+            >
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              required
+              class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              style="border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color);"
+              placeholder="Asunto del mensaje"
+            />
           </div>
-          
+
           <div>
-            <label for="message" class="block mb-2 text-sm font-medium" style="color: var(--text-color);">Mensaje</label>
-            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all" style="border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color);" placeholder="Tu mensaje aquí..."></textarea>
+            <label
+              for="message"
+              class="block mb-2 text-sm font-medium"
+              style="color: var(--text-color);">Mensaje</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              style="border-color: var(--border-color); background-color: var(--bg-color); color: var(--text-color);"
+              placeholder="Tu mensaje aquí..."></textarea>
           </div>
-          
+
           <div class="columns-2 py-2 my-2">
-            <button type="submit" id="submit-btn" class="btn-primary w-full md:w-auto px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+            <button
+              type="submit"
+              id="submit-btn"
+              class="btn-primary w-full md:w-auto px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+            >
               <span id="btn-text">Enviar mensaje</span>
               <span id="btn-loading" class="hidden">Enviando...</span>
             </button>
-            <div class="mx-auto flex items-center space-x-3 ">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" style="color: var(--text-color);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <div class="mx-auto flex items-center space-x-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                style="color: yellow;"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
-              <span class="text-lg text-yellow-300" style="color: var(--text-color);">Disponible para proyectos freelance</span>
+              <span
+                class="text-lg text-yellow-300"
+                >Disponible para proyectos freelance</span
+              >
             </div>
           </div>
-          
+
           <!-- Mensaje de estado -->
           <div id="form-message" class="hidden p-4 rounded-lg">
             <p id="message-text"></p>
@@ -60,69 +134,68 @@ const {nombre = "Contacto", tecnologiasUsadas = [], descripcion = "¿Tienes un p
       </div>
     </div>
 
-    <div class="mx-auto flex items-center space-x-3 ">
-      
-    </div>
-    
-      
-    </div>
+    <div class="mx-auto flex items-center space-x-3"></div>
+  </div>
 </section>
 
 <script>
-  import { insertContact } from '../scripts/supabase-api.js';
+  import { insertContact } from "../scripts/supabase-api.js";
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const btnText = document.getElementById('btn-text');
-    const btnLoading = document.getElementById('btn-loading');
-    const formMessage = document.getElementById('form-message');
-    const messageText = document.getElementById('message-text');
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const btnText = document.getElementById("btn-text");
+    const btnLoading = document.getElementById("btn-loading");
+    const formMessage = document.getElementById("form-message");
+    const messageText = document.getElementById("message-text");
 
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
-      
+
       // Mostrar estado de carga
       submitBtn.disabled = true;
-      btnText.classList.add('hidden');
-      btnLoading.classList.remove('hidden');
-      formMessage.classList.add('hidden');
-      
+      btnText.classList.add("hidden");
+      btnLoading.classList.remove("hidden");
+      formMessage.classList.add("hidden");
+
       // Obtener datos del formulario
       const formData = new FormData(form);
       const contactData = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        subject: formData.get('subject'),
-        message: formData.get('message')
+        name: formData.get("name"),
+        email: formData.get("email"),
+        subject: formData.get("subject"),
+        message: formData.get("message"),
       };
-      
+
       try {
         // Enviar datos a Supabase
         const result = await insertContact(contactData);
-        
+
         if (result.success) {
           // Éxito
-          messageText.textContent = '¡Mensaje enviado correctamente! Te contactaré pronto.';
-          formMessage.className = 'p-4 rounded-lg bg-green-100 text-green-800';
-          formMessage.classList.remove('hidden');
+          messageText.textContent =
+            "¡Mensaje enviado correctamente! Te contactaré pronto.";
+          formMessage.className = "p-4 rounded-lg bg-green-100 text-green-800";
+          formMessage.classList.remove("hidden");
           form.reset();
         } else {
           // Error
-          messageText.textContent = 'Error al enviar el mensaje: ' + result.error;
-          formMessage.className = 'p-4 rounded-lg bg-red-100 text-red-800';
-          formMessage.classList.remove('hidden');
+          messageText.textContent =
+            "Error al enviar el mensaje: " + result.error;
+          formMessage.className = "p-4 rounded-lg bg-red-100 text-red-800";
+          formMessage.classList.remove("hidden");
         }
       } catch (error) {
         // Error de conexión
-        messageText.textContent = 'Error de conexión. Por favor, intenta de nuevo.';
-        formMessage.className = 'p-4 rounded-lg bg-red-100 text-red-800';
-        formMessage.classList.remove('hidden');
+        messageText.textContent =
+          "Error de conexión. Por favor, intenta de nuevo.";
+        formMessage.className = "p-4 rounded-lg bg-red-100 text-red-800";
+        formMessage.classList.remove("hidden");
       } finally {
         // Restaurar estado del botón
         submitBtn.disabled = false;
-        btnText.classList.remove('hidden');
-        btnLoading.classList.add('hidden');
+        btnText.classList.remove("hidden");
+        btnLoading.classList.add("hidden");
       }
     });
   });
