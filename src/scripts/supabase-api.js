@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase.ts';
 export async function insertContact(contactData) {
   try {
     const { data, error } = await supabase
-      .from('contacts')
+      .from('contactos')
       .insert([
         {
           name: contactData.name,
@@ -17,7 +17,7 @@ export async function insertContact(contactData) {
       .select();
 
     if (error) {
-      console.error('Error inserting contact:', error);
+      console.error('Error al insertar un contacto:', error);
       return { success: false, error: error.message };
     }
 
