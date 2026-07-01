@@ -19,9 +19,10 @@ try {
 ---
 
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="mx-auto max-w-7xl">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
   {projectsData.map((proj) => (
-    <div class="border border-purple-600 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+    <div class="w-full max-w-sm border border-purple-600 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
       <a href={proj.github_url} target="_blank" class="block group cursor-pointer hover:transform hover:translate-y-[-2px] transition-all duration-300">
         <div class="h-40 gradient-bg flex items-center justify-center text-white text-lg font-bold relative overflow-hidden">
           <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.8),transparent_70%)]"></div>
@@ -70,4 +71,5 @@ try {
       </a>
     </div>
   ))}
+  </div>
 </div>
