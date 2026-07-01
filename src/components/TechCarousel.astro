@@ -1,0 +1,63 @@
+---
+
+interface props{
+  tecnologias: { nombre: string; color: string; img: string; }[];
+}
+
+const {tecnologias: propTecnologias} = Astro.props;
+---
+
+<section id="tecnologias" class="py-16" style="background-color: var(--bg-color);">
+  <div class="container mx-auto px-4">
+    <h2 class="section-title gradient-text">Tecnologías</h2>
+    <p class="mb-10 text-lg" style="color: var(--text-muted);">Estas son algunas de las tecnologías con las que trabajo</p>
+    
+    <div class="tech-carousel-container overflow-hidden relative w-full py-8">
+      <div class="tech-carousel flex animate-scroll">
+        <!-- Original technologies -->
+        {propTecnologias.map((tech) => (
+          <div class="tech-item flex flex-col items-center group mx-8 flex-shrink-0">
+            <div class="w-24 h-24 rounded-full flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:scale-105 transition-all duration-300" style="background-color: var(--card-bg); box-shadow: 0 4px 6px var(--shadow-color);">
+              <img src={tech.img} alt={`Logo de ${tech.nombre}`} class="h-12 w-12 object-contain" />
+            </div>
+            <span class="font-medium group-hover:text-purple-600 transition-colors">{tech.nombre}</span>
+          </div>
+        ))}
+        <!-- Duplicated technologies for infinite scroll -->
+        {propTecnologias.map((tech) => (
+          <div class="tech-item flex flex-col items-center group mx-8 flex-shrink-0" aria-hidden="true">
+            <div class="w-24 h-24 rounded-full flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:scale-105 transition-all duration-300" style="background-color: var(--card-bg); box-shadow: 0 4px 6px var(--shadow-color);">
+              <img src={tech.img} alt={`Logo de ${tech.nombre}`} class="h-12 w-12 object-contain" />
+            </div>
+            <span class="font-medium group-hover:text-purple-600 transition-colors">{tech.nombre}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-carousel-container {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-160px * var(--tech-count)));
+    }
+  }
+  
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+</style>
+
+<script define:vars={{ techCount: propTecnologias.length }}>
+  const root = document.documentElement;
+  root.style.setProperty('--tech-count', techCount);
+</script>

@@ -1,0 +1,119 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Projects from "../components/Projects.astro";
+import TechCarousel from "../components/TechCarousel.astro";
+import Contact from "../components/Contact.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Kevin Salinas Portfolio">
+  <Navbar />
+  <main>
+    <Hero />
+    <section
+      id="proyectos"
+      class="py-16 grid-cols-5"
+      style="background-
+		color: var(--bg-
+		color);"
+    >
+      <div class="container mx-4">
+        <h2 class="section-title gradient-text">Mis Proyectos</h2>
+        <p class="mb-10 text-lg" style="
+				color: var(--text-muted);">
+          Aquí hay algunos proyectos en los que estuve trabajando. ¿Quieres ver
+          más? Visita mi 
+          <a
+            href="https://github.com/kewsito"
+            target="_blank"
+            class="text-orange-400 hover:underline font-medium">GitHub</a
+          >.
+        </p>
+      </div>
+      <div class="w-full">
+          <Projects />
+      </div>
+    </section>
+
+    <TechCarousel
+      tecnologias={[
+        {
+          nombre: "HTML",
+          color: "text-orange-600",
+          img: "/icons/html-5.svg",
+        },
+        {
+          nombre: "CSS",
+          color: "text-blue-500",
+          img: "/icons/css-3.svg",
+        },
+        {
+          nombre: "JavaScript",
+          color: "text-yellow-400",
+          img: "/icons/javascript.svg",
+        },
+        {
+          nombre: "Python",
+          color: "text-blue-500",
+          img: "/icons/python.svg",
+        },
+        {
+          nombre: "Django",
+          color: "text-green-700",
+          img: "/icons/django.svg",
+        },
+        {
+          nombre: "C++",
+          color: "text-blue-600",
+          img: "/icons/cpp.svg",
+        },
+        {
+          nombre: "Prolog",
+          color: "text-red-500",
+          img: "/icons/prolog.svg",
+        },
+        {
+          nombre: "Git",
+          color: "text-orange-500",
+          img: "/icons/git.svg",
+        },
+        {
+          nombre: "Node.js",
+          color: "text-green-500",
+          img: "/icons/node-js.svg",
+        },
+        {
+          nombre: "Astro",
+          color: "text-purple-500",
+          img: "/icons/astro.svg",
+        },
+		
+        {
+          nombre: "Tailwind CSS",
+          color: "text-purple-500",
+          img: "/icons/tailwind.svg",
+        },
+        {
+          nombre: "PostgreSQL",
+          color: "text-purple-500",
+          img: "/icons/postgresql.svg",
+        },
+        {
+          nombre: "MySQL",
+          color: "text-purple-500",
+          img: "/icons/mysql.svg",
+        },
+
+      ]}
+    />
+    <Contact
+      nombre="Contacto"
+      descripcion="¿Tienes un proyecto en mente? ¡Hablemos!"
+    />
+  </main>
+  <ThemeToggle />
+  <Footer />
+</Layout>

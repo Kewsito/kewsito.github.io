@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+}
+
+const { title = "Kevin Salinas Portfolio" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7PE12FK3X" is:inline></script>
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-P7PE12FK3X');
+        </script>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+		<script src="../scripts/theme-toggle.js"></script>
+		<script is:inline>
+			// Función para establecer el tema según la preferencia del usuario
+			function setTheme() {
+				// Verificar si hay un tema guardado en localStorage
+				const savedTheme = localStorage.getItem('theme');
+				
+				// Si hay un tema guardado, usarlo
+				if (savedTheme) {
+					document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+				} else {
+					// Si no hay tema guardado, usar la preferencia del sistema
+					const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+					document.documentElement.classList.toggle('dark', prefersDark);
+					localStorage.setItem('theme', prefersDark ? 'dark' : 'light');
+				}
+			}
+
+			// Ejecutar al cargar la página
+			setTheme();
+
+			// Función para cambiar el tema
+			window.toggleTheme = function() {
+				const isDark = document.documentElement.classList.toggle('dark');
+				localStorage.setItem('theme', isDark ? 'dark' : 'light');
+				return isDark;
+			}
+		</script>
+	</head>
+	<body class="font-sans">
+		<slot />
+	</body>
+</html>
