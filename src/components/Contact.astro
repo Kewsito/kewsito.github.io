@@ -142,12 +142,16 @@ const {
   import { insertContact } from "../scripts/supabase-api.js";
 
   document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contact-form");
-    const submitBtn = document.getElementById("submit-btn");
-    const btnText = document.getElementById("btn-text");
-    const btnLoading = document.getElementById("btn-loading");
-    const formMessage = document.getElementById("form-message");
-    const messageText = document.getElementById("message-text");
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
+    const btnText = document.getElementById("btn-text") as HTMLElement | null;
+    const btnLoading = document.getElementById("btn-loading") as HTMLElement | null;
+    const formMessage = document.getElementById("form-message") as HTMLElement | null;
+    const messageText = document.getElementById("message-text") as HTMLElement | null;
+
+    if (!form || !submitBtn || !btnText || !btnLoading || !formMessage || !messageText) {
+      return;
+    }
 
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -185,7 +189,7 @@ const {
           formMessage.className = "p-4 rounded-lg bg-red-100 text-red-800";
           formMessage.classList.remove("hidden");
         }
-      } catch (error) {
+      } catch {
         // Error de conexión
         messageText.textContent =
           "Error de conexión. Por favor, intenta de nuevo.";
